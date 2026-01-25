@@ -6,6 +6,7 @@ let count = 0;
 const Todo = () => {
   const [todoInput, setTodoInput] = useState([]);
   const inputRef = useRef(null);
+  const isFirstRender = useRef(true);
 
   const add = () => {
     const value = inputRef.current.value;
@@ -35,6 +36,10 @@ const Todo = () => {
   }, []);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     localStorage.setItem("todoItems", JSON.stringify(todoInput));
   }, [todoInput]);
 
