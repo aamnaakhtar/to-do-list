@@ -1,4 +1,4 @@
-import "./CSS/Todo.css";
+import "./CSS/Style.css";
 import TodoItems from "./TodoItems";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,14 +10,34 @@ const Todo = () => {
   const add = () => {
     const value = inputRef.current.value;
     if (value.trim() !== "") {
-      setTodoInput([...todoInput, { id: count++, text: value }]);
+      setTodoInput([
+        ...todoInput,
+        { id: count++, text: value, completed: false },
+      ]);
       inputRef.current.value = "";
     }
   };
 
+  const toggleTodo = (id) => {
+    const updatedTodos = todoInput.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+    );
+    setTodoInput(updatedTodos);
+  };
+
+  const deleteTodo = (id) => {
+    const filteredTodos = todoInput.filter((todo) => todo.id !== id);
+    setTodoInput(filteredTodos);
+  };
+
   useEffect(() => {
-    console.log(todoInput);
+    setTodoInput(JSON.parse(localStorage.getItem("todoItems")) || []);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todoItems", JSON.stringify(todoInput));
   }, [todoInput]);
+
   return (
     <div className="todo">
       <div className="todo-header">To Do List</div>
@@ -28,16 +48,21 @@ const Todo = () => {
           className="todo-input"
           ref={inputRef}
         />
-        <div className="todo-add-btn" onClick={() => add()}>
+        <div className="todo-add-btn" onClick={add}>
           ADD
         </div>
       </div>
       <div className="todo-list">
-        {todoInput.map((item, index) => {
-          return (
-            <TodoItems key={item.id} text={item.text} display={item.display} />
-          );
-        })}
+        {todoInput.map((item) => (
+          <TodoItems
+            key={item.id}
+            id={item.id}
+            text={item.text}
+            completed={item.completed}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+          />
+        ))}
       </div>
     </div>
   );
