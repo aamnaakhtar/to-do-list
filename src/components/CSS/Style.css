@@ -36,6 +36,15 @@ body {
     margin-bottom: 14px;
     gap: 5px;
 }
+.char-count {
+    font-size: 12px;
+    color: #9e9d9d;
+    text-align: right;
+    padding: 0 4px;
+}
+.char-count.warning {
+  color: #ff4d4f;
+}
 .todo-input {
     flex: 1;
     border-radius: 25px;

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 let count = 0;
 const Todo = () => {
   const [todoInput, setTodoInput] = useState([]);
+  const [charCount, setCharCount] = useState(0);
   const inputRef = useRef(null);
   const isFirstRender = useRef(true);
 
@@ -16,6 +17,7 @@ const Todo = () => {
         { id: count++, text: value, completed: false },
       ]);
       inputRef.current.value = "";
+      setCharCount(0);
     }
   };
 
@@ -60,7 +62,11 @@ const Todo = () => {
           ref={inputRef}
           maxLength={100}
           onKeyDown={handleKeyDown}
+          onChange={(e) => setCharCount(e.target.value.length)}
         />
+        <div className={`char-count ${charCount > 95 ? "warning" : ""}`}>
+          {charCount}/100
+        </div>
         <div className="todo-add-btn" onClick={add}>
           ADD
         </div>
