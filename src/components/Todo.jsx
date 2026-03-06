@@ -19,6 +19,12 @@ const Todo = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      add();
+    }
+  };
+
   const toggleTodo = (id) => {
     const updatedTodos = todoInput.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo,
@@ -53,6 +59,7 @@ const Todo = () => {
           className="todo-input"
           ref={inputRef}
           maxLength={100}
+          onKeyDown={handleKeyDown}
         />
         <div className="todo-add-btn" onClick={add}>
           ADD
