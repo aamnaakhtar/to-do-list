@@ -52,6 +52,7 @@ const Todo = () => {
           placeholder="Add a new task"
           className="todo-input"
           ref={inputRef}
+          maxLength={100}
         />
         <div className="todo-add-btn" onClick={add}>
           ADD
