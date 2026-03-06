@@ -13,8 +13,8 @@ const Todo = () => {
     const value = inputRef.current.value;
     if (value.trim() !== "") {
       setTodoInput([
-        ...todoInput,
         { id: count++, text: value, completed: false },
+        ...todoInput,
       ]);
       inputRef.current.value = "";
       setCharCount(0);
