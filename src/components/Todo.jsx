@@ -68,7 +68,7 @@ const Todo = () => {
           {charCount}/100
         </div>
         <div className="todo-add-btn" onClick={add}>
-          ADD
+          +
         </div>
       </div>
       <div className="todo-list">
