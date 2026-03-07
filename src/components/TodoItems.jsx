@@ -1,6 +1,27 @@
 import "./CSS/Style.css";
 
-const TodoItems = ({ id, text, completed, toggleTodo, deleteTodo }) => {
+const TodoItems = ({
+  id,
+  text,
+  completed,
+  toggleTodo,
+  deleteTodo,
+  startEdit,
+  editId,
+  editText,
+  setEditText,
+  saveEdit,
+}) => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      saveEdit(id);
+    }
+
+    if (e.key === "Escape") {
+      startEdit(null, "");
+    }
+  };
+
   return (
     <div className="todo-items">
       <div className="todo-item-container">
@@ -11,15 +32,26 @@ const TodoItems = ({ id, text, completed, toggleTodo, deleteTodo }) => {
             checked={completed}
             onChange={() => toggleTodo(id)}
           />
-          <span
-            className="todo-item-text"
-            style={{
-              textDecoration: completed ? "line-through" : "none",
-              opacity: completed ? 0.6 : 1,
-            }}
-          >
-            {text}
-          </span>
+          {editId === id ? (
+            <input
+              className="todo-item-edit-input"
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
+          ) : (
+            <span
+              className="todo-item-text"
+              onDoubleClick={() => startEdit(id, text)}
+              style={{
+                textDecoration: completed ? "line-through" : "none",
+                opacity: completed ? 0.6 : 1,
+              }}
+            >
+              {text}
+            </span>
+          )}
           <span className="todo-item-delete" onClick={() => deleteTodo(id)}>
             <span className="todo-item-delete-icon">x</span>
           </span>

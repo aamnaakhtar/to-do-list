@@ -56,6 +56,15 @@ body {
     padding-left: 16px;
     font-size: 16px;
 }
+.todo-item-edit-input {
+    flex: 1;
+    background: #edeef0;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
 .todo-add-btn {
     border-radius: 25px;
     background: #ff6739;

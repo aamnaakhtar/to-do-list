@@ -6,6 +6,8 @@ let count = 0;
 const Todo = () => {
   const [todoInput, setTodoInput] = useState([]);
   const [charCount, setCharCount] = useState(0);
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
   const inputRef = useRef(null);
   const isFirstRender = useRef(true);
 
@@ -35,6 +37,21 @@ const Todo = () => {
     const completed = updatedTodos.filter((todo) => todo.completed);
 
     setTodoInput([...active, ...completed]);
+  };
+
+  const startEdit = (id, text) => {
+    setEditId(id);
+    setEditText(text);
+  };
+
+  const saveEdit = (id) => {
+    const updatedTodos = todoInput.map((todo) =>
+      todo.id === id ? { ...todo, text: editText } : todo,
+    );
+
+    setTodoInput(updatedTodos);
+    setEditId(null);
+    setEditText("");
   };
 
   const deleteTodo = (id) => {
@@ -83,6 +100,11 @@ const Todo = () => {
             completed={item.completed}
             toggleTodo={toggleTodo}
             deleteTodo={deleteTodo}
+            startEdit={startEdit}
+            editId={editId}
+            editText={editText}
+            setEditText={setEditText}
+            saveEdit={saveEdit}
           />
         ))}
       </div>
