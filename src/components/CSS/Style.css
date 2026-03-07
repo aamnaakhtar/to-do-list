@@ -1,7 +1,14 @@
+body {
+    background-image: url(../Assets/web-background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .todo {
-    width: 300px;
+    width: 600px;
     min-height: 366px;
     border-radius: 10px;
+    border: 1px solid #e0e0e0;
     background: #fff;
     margin: auto;
     margin-top: 80px;
@@ -14,7 +21,7 @@
 .todo-header {
     margin-top: 42px;
     color: #002765;
-    font-size: 18px;
+    font-size: 40px;
     font-weight: 600;
     line-height: 17px;
     text-align: center;
@@ -23,31 +30,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #edeef0;
+    border-radius: 25px;
     margin-top: 22px;
     margin-bottom: 14px;
+    gap: 5px;
+}
+.char-count {
+    font-size: 12px;
+    color: #9e9d9d;
+    text-align: right;
+    padding: 0 4px;
+}
+.char-count.warning {
+  color: #ff4d4f;
 }
 .todo-input {
-    border-radius: 20px;
+    flex: 1;
+    border-radius: 25px;
     background: #edeef0;
     border: none;
     outline: none;
-    width: 288px;
-    height: 40px;
+    width: 100%;
+    height: 50px;
     padding-left: 16px;
-    font-size: 14px;
+    font-size: 16px;
 }
 .todo-add-btn {
-    border-radius: 20px;
+    border-radius: 25px;
     background: #ff6739;
-    width: 94px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: -50px;
     color: #fff;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 30px;
+    font-weight: 700;
     cursor: pointer;
 }
 .todo-list {
@@ -62,18 +81,18 @@
 .todo-item-container {
     width: 100%;
     border-bottom: 1px solid #e0e0e0;
-    padding: 6px 0;
+    padding: 10px 0;
 }
 .todo-item input[type="checkbox"] {
-    width: 10px;
-    height: 10px;
+    width: 14px;
+    height: 14px;
     margin-right: 10px;
     margin-left: 10px;
     vertical-align: bottom;
     cursor: pointer;
 }
 .todo-item-text {
-    font-size: 14px;
+    font-size: 16px;
     color: #002765;
     width: 80%;
 }
@@ -81,11 +100,28 @@
     margin-left: auto;
     padding: 0 10px;
     color: #9e9d9d;
-    font-size: 10px;
+    font-size: 14px;
     vertical-align: text-bottom;
     cursor: pointer;
 }
 .todo-item-delete:hover {
     color: #000;
     cursor: pointer;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+    body {
+        background-image: url(../Assets/small-screen-bg.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .todo {
+        width: 80%;
+        margin-top: 40px;
+    }
+    .todo-header {
+        font-size: 28px;
+    }
 }
