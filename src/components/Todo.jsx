@@ -31,7 +31,10 @@ const Todo = () => {
     const updatedTodos = todoInput.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo,
     );
-    setTodoInput(updatedTodos);
+    const active = updatedTodos.filter((todo) => !todo.completed);
+    const completed = updatedTodos.filter((todo) => todo.completed);
+
+    setTodoInput([...active, ...completed]);
   };
 
   const deleteTodo = (id) => {
